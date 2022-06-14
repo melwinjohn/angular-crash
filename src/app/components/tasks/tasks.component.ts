@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/Task';
+import { Tasks } from 'src/app/mock-task';
 
 @Component({
   selector: 'app-tasks',
@@ -26,8 +27,7 @@ export class TasksComponent implements OnInit {
   }
 
   addTask(task: Task) {
-    console.log(task);
-    this.taskService.addTask(task).subscribe((task) => { this.tasks.push(task); });
+    this.taskService.addTask(task).subscribe((task) => this.tasks.push(task));
   }
 
 }

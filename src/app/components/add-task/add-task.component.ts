@@ -9,7 +9,7 @@ import { Task } from 'src/app/Task';
 })
 export class AddTaskComponent implements OnInit {
 
-@Output () addTask:EventEmitter<Task> = new EventEmitter();
+@Output () onAddTask:EventEmitter<Task> = new EventEmitter();
 text!:string;
 day!:string;
 reminder:boolean = false;
@@ -18,27 +18,23 @@ reminder:boolean = false;
   ngOnInit(): void {
   }
 
-  onSubmit(){
-    if(!this.text)
-    {
-      alert('Please enter a task');
+  onSubmit() {
+    if (!this.text) {
+      alert('Please add a task!');
       return;
     }
 
-    const newTask = {
+    const newTask: Task = {
       text: this.text,
       day: this.day,
-      reminder: this.reminder
+      reminder: this.reminder,
+    };
 
-    }
-
-    this.addTask.emit(newTask);
-    //@todo -emit event
+    this.onAddTask.emit(newTask);
 
     this.text = '';
     this.day = '';
     this.reminder = false;
-
   }
 
 
